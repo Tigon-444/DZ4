@@ -1,9 +1,3 @@
-﻿using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
-using System.Threading.Tasks;
-using DZ4;
-
 namespace DZ4
 {
     internal class Program
