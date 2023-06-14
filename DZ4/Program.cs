@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
-using DZ4;
 
 namespace DZ4
 {
@@ -43,14 +40,14 @@ namespace DZ4
         public int Size = 0;
         public string Top = "";
 
-
-        public Stack(string v1, string v2, string v3)
+        public Stack (params string[] list)
         {
-            allPozition.Add(v1);
-            allPozition.Add(v2);
-            allPozition.Add(v3);
-            Size =Size + 3;
-            Top = v3;
+            for (int i = 0; i < list.Length; i++)
+            {
+                allPozition.Add(list[i]);
+                Size++;
+                Top = list[i];
+            }
         }
 
         public void Add(string addElement)
@@ -121,22 +118,23 @@ namespace DZ4
             listStack.RemoveAt(listStack.Count-1);
             stack1.allPozition = listStack;
 
-            //Console.WriteLine(stack1.allPozition[0]);
-            //Console.WriteLine(stack1.allPozition[1] + " " + stack1.allPozition[2] + " " + stack1.allPozition[3] + " ");
-            //Console.WriteLine(stack1.allPozition[4] + " " + stack1.allPozition[5] + " " + stack1.allPozition[6] + " ");
-            //Console.WriteLine(stack1.allPozition[7] + " " + stack1.allPozition[8] + " " + stack1.allPozition[9] + " ");
+            Console.WriteLine(stack1.allPozition[0]); // показывает весь стек
+            Console.WriteLine(stack1.allPozition[1] + " " + stack1.allPozition[2] + " " + stack1.allPozition[3] + " ");
+            Console.WriteLine(stack1.allPozition[4] + " " + stack1.allPozition[5] + " " + stack1.allPozition[6] + " ");
+            Console.WriteLine(stack1.allPozition[7] + " " + stack1.allPozition[8] + " " + stack1.allPozition[9] + " ");
 
             return "";
         }
 
     }
 
+
     class StackExtensions
     {
 
-        public StackExtensions(Stack stack1)
+        public StackExtensions(params string[] list)
         {
-           
+            
         }
 
         public void Merge(Stack stack1)
