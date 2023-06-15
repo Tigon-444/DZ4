@@ -28,7 +28,7 @@ namespace DZ4
 
             //Console.ReadLine();
 
-            var s2 = Stack.Concat(new Stack("a", "b", "c"), new Stack("1", "2", "3"), new Stack("А", "Б", "В"));
+            var s2 = Stack.Concat(new Stack("a", "b", "c","d","e"), new Stack("1", "2", "3"), new Stack("А", "Б", "В","Г"));
             //в стеке s теперь элементы - "c", "b", "a" "3", "2", "1", "В", "Б", "А" < -верхний
             Console.ReadLine();
         }
@@ -36,7 +36,7 @@ namespace DZ4
 
     class Stack     // class Stack : StackExtensions
     {
-        private List<string> allPozition = new List<string>(){"Null"};
+        private List<string> allPozition = new List<string>();
         public int Size = 0;
         public string Top = "";
 
@@ -72,56 +72,46 @@ namespace DZ4
             catch (Exception e)
             {
                 Console.WriteLine("Стек пустой");
+                Top = "Null";
                 return nowParametr = "";
             }
             
         }
 
-        public static string Concat(Stack stack1, Stack stack2, Stack stack3)
+        public static string Concat(params Stack[] list)
         {
-            List<string> list = new List<string>();
-            List<string> listStack = new List<string>();
 
-            for (int j = 0; j <= 3; j++)
+            List<string> nowStack = new List<string>();
+            List<string> allStack = new List<string>();
+
+            for (int j = 0; j < list.Length; j++)
             {
-                if (j == 0)
+                nowStack = list[j].allPozition;
+
+                int count = nowStack.Count-1;
+
+                for (int i = 0; i <= count; i++)
                 {
-                   list = stack1.allPozition;
-                }
-                else if (j == 1)
-                {
-                    list = stack2.allPozition;
-                }
-                else
-                {
-                    list = stack3.allPozition;
+                    string now = nowStack[count-i];
+                    nowStack.Add(now);
                 }
 
-                int count = list.Count - 1;
-                for (int i = 1; i <= count; i++)
+                for (int i = 0; i <= nowStack.Count /2 +1; i++)
                 {
-                    string first = list[count - i];
-                    list.Add(first);
+                    nowStack.RemoveAt(0);
                 }
 
-                for (int i = 1; i <= (list.Count) / 2; i++)
+                for (int i = 0; i <= count; i++)
                 {
-                    list.RemoveAt(1);
+                    allStack.Add(nowStack[i]);
                 }
 
-                for (int i = 1; i <= count; i++)
-                {
-                    listStack.Add(list[i]);
-                }
             }
-            listStack.Insert(0, "Null");
-            listStack.RemoveAt(listStack.Count-1);
-            stack1.allPozition = listStack;
 
-            Console.WriteLine(stack1.allPozition[0]); // показывает весь стек
-            Console.WriteLine(stack1.allPozition[1] + " " + stack1.allPozition[2] + " " + stack1.allPozition[3] + " ");
-            Console.WriteLine(stack1.allPozition[4] + " " + stack1.allPozition[5] + " " + stack1.allPozition[6] + " ");
-            Console.WriteLine(stack1.allPozition[7] + " " + stack1.allPozition[8] + " " + stack1.allPozition[9] + " ");
+            for (int i = 0; i < allStack.Count; i++) // вывод значений, для себя)
+            {
+                Console.WriteLine(allStack[i]);
+            }
 
             return "";
         }
