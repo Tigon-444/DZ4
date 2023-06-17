@@ -76,7 +76,7 @@ namespace DZ4
             
         }
 
-        public static string Concat(params Stack[] list)
+        public static List<string> Concat(params Stack[] list)
         {
 
             List<string> nowStack = new List<string>();
@@ -111,7 +111,7 @@ namespace DZ4
                 Console.WriteLine(allStack[i]);
             }
 
-            return "";
+            return allStack;
         }
 
 
