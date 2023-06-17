@@ -19,14 +19,12 @@ namespace DZ4
             Console.WriteLine($"size = {s.Size}, Top = {(s.Top == null ? "null" : s.Top)}");
             s.Pop();
 
-            //var s1 = new Stack("a", "b", "c");
-            //Console.WriteLine(s1.Top);
-            //Console.ReadLine();
+            Console.WriteLine();
 
-            //s1.Merge(new Stack("1", "2", "3"));// в стеке s теперь элементы - "a", "b", "c", "3", "2", "1" <- верхний
-            //Console.WriteLine(s1.Top);
+            var s1 = new Stack("a", "b", "c");
+            s1.Merge(new Stack("1", "2", "3"));            //Console.WriteLine(s1.Top);
 
-            //Console.ReadLine();
+            Console.WriteLine();
 
             var s2 = Stack.Concat(new Stack("a", "b", "c","d","e"), new Stack("1", "2", "3"), new Stack("А", "Б", "В","Г"));
             //в стеке s теперь элементы - "c", "b", "a" "3", "2", "1", "В", "Б", "А" < -верхний
@@ -34,13 +32,13 @@ namespace DZ4
         }
     }
 
-    class Stack     // class Stack : StackExtensions
+    public class Stack 
     {
-        private List<string> allPozition = new List<string>();
+        public List<string> allPozition = new List<string>();
         public int Size = 0;
         public string Top = "";
 
-        public Stack (params string[] list)
+        public Stack(params string[] list)
         {
             for (int i = 0; i < list.Length; i++)
             {
@@ -116,20 +114,36 @@ namespace DZ4
             return "";
         }
 
+
     }
 
-
-    class StackExtensions
+    public static class StackExtensions
     {
-
-        public StackExtensions(params string[] list)
+        public static void Merge(this Stack stack, Stack newStack)
         {
-            
-        }
+            int count = newStack.allPozition.Count - 1;
 
-        public void Merge(Stack stack1)
-        {
-           
+            for (int i = 0; i <= count; i++)
+            {
+                string now = newStack.allPozition[count - i];
+                newStack.allPozition.Add(now);
+            }
+
+            for (int i = 0; i <= newStack.allPozition.Count / 2 + 1; i++)
+            {
+                newStack.allPozition.RemoveAt(0);
+            }
+
+            for (int i = 0; i <= count; i++)
+            {
+                stack.allPozition.Add(newStack.allPozition[i]);
+            }
+
+
+            for (int i = 0; i < stack.allPozition.Count; i++) // вывод значений, для себя)
+            {
+                Console.WriteLine(stack.allPozition[i]);
+            }
         }
     }
 
