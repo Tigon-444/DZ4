@@ -1,4 +1,6 @@
-﻿namespace DZ4
+﻿using static System.Collections.Stack;
+
+namespace DZ4
 {
     public static class StackExtensions
     {
