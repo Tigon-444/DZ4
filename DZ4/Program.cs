@@ -16,12 +16,8 @@
             Console.WriteLine($"size = {s.Size}, Top = {(s.Top == null ? "null" : s.Top)}");
             s.Pop();
 
-            Console.WriteLine();
-
             var s1 = new Stack("a", "b", "c");
-            s1.Merge(new Stack("1", "2", "3"));            //Console.WriteLine(s1.Top);
-
-            Console.WriteLine();
+            s1.Merge(new Stack("1", "2", "3")); 
 
             var s2 = Stack.Concat(new Stack("a", "b", "c","d","e"), new Stack("1", "2", "3"), new Stack("А", "Б", "В","Г"));
             //в стеке s теперь элементы - "c", "b", "a" "3", "2", "1", "В", "Б", "А" < -верхний

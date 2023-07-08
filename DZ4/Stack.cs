@@ -2,7 +2,7 @@
 {
     public class Stack
     {
-        public List<string> allPozition { get; private set; } = new List<string>();
+        private List<string> allPozition = new List<string>();
         public int Size { get; private set; } = 0;
         public string Top { get; private set; } = "";
 
@@ -27,6 +27,12 @@
         {
             string nowParametr;
 
+            if (Top == null)
+            {
+                Console.WriteLine("Стек пустой");
+                return "";
+            }
+
             if (allPozition.Count > 1)
             {
                 nowParametr = allPozition[allPozition.Count - 1];
@@ -35,34 +41,25 @@
                 Top = allPozition[allPozition.Count - 1];
                 return nowParametr;
             }
-            else
-            {
-                Console.WriteLine("Стек пустой");
-                Size = 0;
-                Top = "Null";
-                return nowParametr = "";
-            }
-
+            Size = 0;
+            Top = null;
+            return "";
         }
 
         public static List<string> Concat(params Stack[] list)
         {
             List<string> allStack = new List<string>();
 
-            for (int j = 0; j < list.Length; j++)
+            foreach (var stack in list)
             {
-                int count = list[j].allPozition.Count - 1;
-
-                for (int i = 0; i <= count; i++)
+                while (stack.Top != null)
                 {
-                    allStack.Add(list[j].allPozition[count - i]);
+                    allStack.Add(stack.Top);
+                    stack.Pop();
                 }
+
             }
-            foreach (var param in allStack) // вывод значений, для себя)
-            {
-                //Debug.Print(param);
-                Console.WriteLine(param);
-            }
+            Console.WriteLine(string.Join(',',allStack)); // вывод для себя
             return allStack;
         }
     }
